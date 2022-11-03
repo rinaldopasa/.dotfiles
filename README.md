@@ -1,2 +1,2 @@
-# .dotfiles
-Just dotfiles
+# Dotfiles
+**Status**: Working on

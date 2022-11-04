@@ -278,6 +278,15 @@ mode $mode_gammastep {
 }
 bindsym $mod+g mode $mode_gammastep
 
+# +---------+
+# | Windows |
+# +---------+
+
+# Set galculator window
+for_window [app_id="galculator"] floating enable
+#for_window [app_id="foot" title="^htop"] move container to workspace 2, workspace 2
+
+
 #
 # Status Bar:
 #

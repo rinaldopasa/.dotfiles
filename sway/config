@@ -4,7 +4,9 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-### Variables
+### +-----------+
+### | Variables |
+### +-----------+
 
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
@@ -24,8 +26,22 @@ set $term foot
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu fuzzel | xargs swaymsg exec --
 
-### Output configuration
-#
+# WOB -- Wayland Overlay Bar
+set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+
+### +-----------+
+### | Autostart |
+### +-----------+
+
+# WOB -- Create a named pipe & Connect the named pipe to the standart input of a wob instance
+exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+# WOB -- Systemd
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+### +----------------------+
+### | Output configuration |
+### +----------------------+
+
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ~/.dotfiles/sway/backgrounds/bg005 fill
 #
@@ -35,8 +51,10 @@ output * bg ~/.dotfiles/sway/backgrounds/bg005 fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-### Idle configuration
-#
+### +--------------------+
+### | Idle configuration |
+### +--------------------+
+
 # Example configuration:
 #
 # exec swayidle -w \
@@ -48,8 +66,10 @@ output * bg ~/.dotfiles/sway/backgrounds/bg005 fill
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-### Input configuration
-#
+### +---------------------+
+### | Input configuration |
+### +---------------------+
+
 # Example configuration:
 #
 # "2:7:SynPS/2_Synaptics_TouchPad"
@@ -63,10 +83,12 @@ input type:touchpad {
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-### Key bindings
-# +--------+
-# | Basics |
-# +--------+
+### +--------------+
+### | Key bindings |
+### +--------------+
+#
+# Basics: 
+#
     # Start a terminal
     bindsym $mod+Return exec $term
 
@@ -89,18 +111,26 @@ input type:touchpad {
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
-    # Control volume, monitor brightness or media players
-    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-    bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-    bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+    # Control volume, monitor brightness and media players
+    #bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    #bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    #bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    #bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    #bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+    #bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+
+    # WOB -- Updating volume and brightness
+    bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume > $WOBSOCK
+    bindsym XF86AudioLowerVolume exec pamixer -ud 2 && pamixer --get-volume > $WOBSOCK
+    bindsym XF86AudioMute exec pamixer --toggle-mute && ( [ "$(pamixer --get-mute)" = "true" ] && echo 0 > $WOBSOCK ) || pamixer --get-volume > $WOBSOCK
+    bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > $WOBSOCK
+    bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > $WOBSOCK
+
     bindsym XF86AudioPlay exec playerctl play-pause
     bindsym XF86AudioNext exec playerctl next
     bindsym XF86AudioPrev exec playerctl previous
     bindsym XF86Search exec $menu
-
+#
 # Moving around:
 #
     # Move your focus around

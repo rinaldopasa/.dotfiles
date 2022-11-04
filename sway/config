@@ -40,6 +40,26 @@ set $sovpipe /tmp/sovpipe
 exec rm -f $wobpipe && mkfifo $wobpipe && tail -f $wobpipe | wob
 exec rm -f $sovpipe && mkfifo $sovpipe && tail -f $sovpipe | sov
 
+### +---------------------+
+### | Input configuration |
+### +---------------------+
+
+# Example configuration:
+# My touchpad identifier: "2:7:SynPS/2_Synaptics_TouchPad"
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll disabled
+    middle_emulation enabled
+}
+
+input type:keyboard {
+    repeat_delay 250
+    repeat_rate 100
+}
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
 ### +----------------------+
 ### | Output configuration |
 ### +----------------------+
@@ -68,22 +88,6 @@ output * bg ~/.dotfiles/sway/backgrounds/bg005 fill
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-### +---------------------+
-### | Input configuration |
-### +---------------------+
-
-# Example configuration:
-#
-# "2:7:SynPS/2_Synaptics_TouchPad"
-input type:touchpad {
-    dwt enabled
-    tap enabled
-    natural_scroll disabled
-    middle_emulation enabled
-}
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 
 ### +--------------+
 ### | Key bindings |

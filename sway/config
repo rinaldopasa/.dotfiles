@@ -26,11 +26,16 @@ set $term foot
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu fuzzel | xargs swaymsg exec --
 
-# WOB -- Wayland Overlay Bar
+# WOB (Wayland Overlay Bar)
 set $wobpipe /tmp/wobpipe
 
-# SOV -- Sway Overview
+# SOV (Sway Overview)
 set $sovpipe /tmp/sovpipe
+
+# Gammastep
+set $mode_gammastep "Color temperature: (a)uto, (r)eset, (2)500K, (3)000K, (4)000K, (5)000K"
+set $kill_gammastep pkill -9 gammastep
+
 
 ### +-----------+
 ### | Autostart |
@@ -39,6 +44,7 @@ set $sovpipe /tmp/sovpipe
 # WOB & SOV -- Launch [wob, sov] connected to a named pipe, but remove the named pipe first to avoid mkfifo errors.
 exec rm -f $wobpipe && mkfifo $wobpipe && tail -f $wobpipe | wob
 exec rm -f $sovpipe && mkfifo $sovpipe && tail -f $sovpipe | sov
+
 
 ### +---------------------+
 ### | Input configuration |
@@ -60,6 +66,7 @@ input type:keyboard {
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+
 ### +----------------------+
 ### | Output configuration |
 ### +----------------------+
@@ -73,20 +80,21 @@ output * bg ~/.dotfiles/sway/backgrounds/bg005 fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
+
 ### +--------------------+
 ### | Idle configuration |
 ### +--------------------+
 
 exec swayidle -w \
-	timeout 1800 'swaylock -f -c 282828' \
-	timeout 1805 'swaymsg "output * dpms off"' \ 
-	resume 'swaymsg "output * dpms on"' \
+	timeout 600 'swaylock -f -c 282828' \
+	timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 	before-sleep 'playerctl pause' \
 	before-sleep 'swaylock -f -c 282828'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+
 
 ### +--------------+
 ### | Key bindings |
@@ -117,13 +125,6 @@ exec swayidle -w \
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
     # Control volume, monitor brightness and media players
-    #bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    #bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    #bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-    #bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-    #bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-    #bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
-
     # WOB -- Updating volume and brightness
     bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume > $wobpipe
     bindsym XF86AudioLowerVolume exec pamixer -ud 2 && pamixer --get-volume > $wobpipe
@@ -260,6 +261,22 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+#
+# Gammastep -- Adjust the color temperature:
+#
+mode $mode_gammastep {
+    bindsym a exec --no-startup-id "$kill_gammastep; gammastep -P -t 5000:4000", mode "default"
+    bindsym r exec --no-startup-id "$kill_gammastep; gammastep -x", mode "default"
+    bindsym 2 exec --no-startup-id "$kill_gammastep; gammastep -P -O 2500", mode "default"
+    bindsym 3 exec --no-startup-id "$kill_gammastep; gammastep -P -O 3000", mode "default"
+    bindsym 4 exec --no-startup-id "$kill_gammastep; gammastep -P -O 4000", mode "default"
+    bindsym 5 exec --no-startup-id "$kill_gammastep; gammastep -P -O 5000", mode "default"
+    
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+g mode $mode_gammastep
 
 #
 # Status Bar:

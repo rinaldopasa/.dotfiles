@@ -24,7 +24,7 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu fuzzel | xargs swaymsg exec --
+set $menu bemenu-run | xargs swaymsg exec --
 
 # WOB (Wayland Overlay Bar)
 set $wobpipe /tmp/wobpipe
@@ -36,6 +36,8 @@ set $sovpipe /tmp/sovpipe
 set $mode_gammastep "Color temperature: (a)uto, (r)eset, (2)500K, (3)000K, (4)000K, (5)000K"
 set $kill_gammastep pkill -9 gammastep
 
+# Clipman (Clipboard Manager)
+set $clipboard clipman pick --tool bemenu -T'--prompt="Clipman" -i' --max-items=30 --histpath="~/.local/share/clipman.json"
 
 ### +-----------+
 ### | Autostart |
@@ -44,6 +46,9 @@ set $kill_gammastep pkill -9 gammastep
 # WOB & SOV -- Launch [wob, sov] connected to a named pipe, but remove the named pipe first to avoid mkfifo errors.
 exec rm -f $wobpipe && mkfifo $wobpipe && tail -f $wobpipe | wob
 exec rm -f $sovpipe && mkfifo $sovpipe && tail -f $sovpipe | sov
+
+# Clipman -- Clipboard manager for Wayland
+exec wl-paste -t text --watch clipman store --no-persist --max-items=60 --histpath="~/.local/share/clipman.json"
 
 
 ### +---------------------+
@@ -110,6 +115,9 @@ exec swayidle -w \
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # Start clipman
+    bindsym $mod+c exec $clipboard
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -278,14 +286,14 @@ mode $mode_gammastep {
 }
 bindsym $mod+g mode $mode_gammastep
 
-# +---------+
-# | Windows |
-# +---------+
+# +---------------+
+# | Windows rules |
+# +---------------+
 
-# Set galculator window
 for_window [app_id="galculator"] floating enable
+for_window [app_id="pavucontrol"] floating enable, resize set 580px 450px
+#for_window [app_id="^launcher$"] floating enable, border none, resize set width 25 ppt height 20 ppt, move position 0 px 0px
 #for_window [app_id="foot" title="^htop"] move container to workspace 2, workspace 2
-
 
 #
 # Status Bar:

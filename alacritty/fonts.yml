@@ -1,0 +1,18 @@
+# Font configuration
+font:
+  normal:
+    family: "BlexMono Nerd Font"
+    style: Medium
+  bold:
+    family: "BlexMono Nerd Font"
+    style: Bold
+  italic:
+    family: "BlexMono Nerd Font"
+    style: Italic
+  bold_italic:
+    family: "BlexMono Nerd Font"
+    style: Bold Italic
+
+  # Point size
+  size: 12
+

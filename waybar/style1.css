@@ -1,0 +1,116 @@
+* {
+    font-family: 'BlexMono Nerd Font';
+    font-size: 15px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    transition-property: background-color;
+    transition-duration: 0.125s;
+} 
+
+button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: inherit
+}
+
+#mode,
+#window,
+#temperature,
+#idle_inhibitor,
+#clock,
+#pulseaudio,
+#backlight,
+#memory,
+#cpu,
+#network,
+#custom-launcher,
+#custom-powermenu {
+    padding: 0 9px
+}
+
+#custom-launcher,
+#custom-powermenu {
+    transition-property: color;
+}
+
+
+window#waybar {
+    font-weight: 500;
+    background-color: #1a1b26;
+    color: #ebdbb2;
+}
+
+#workspaces button {
+    color: #a9b1d6;
+    padding: 0 5px;
+}
+
+#workspaces button:hover {
+    background-color: #414868;
+}
+
+#workspaces button.focused {
+    background-color: #ebdbb2;
+    color: #1a1b26;
+}
+
+#temperature {
+    color: #b4f9f8;
+    margin-left: 4px;
+}
+
+#idle_inhibitor {
+    color: #bb9af7;
+}
+
+#window {
+    font-weight: 600;
+    color: #ebdbb2;
+}
+
+#mode {
+    color: #fabd2f;
+}
+
+#clock {
+    color: #a9b1d6;
+}
+
+#pulseaudio {
+    color: #2ac3de;
+}
+
+#backlight {
+    color: #fe8019;
+}
+
+#memory {
+    color: #b8bb26;
+}
+
+#cpu {
+    color: #7aa2f7;
+}
+
+#network {
+    color: #c0caf5;
+}
+
+#custom-launcher {
+    color: #1793d1;
+}
+
+#custom-launcher:hover {
+    color: #ebdbb2;
+}
+
+
+#custom-powermenu {
+    color: #f7768e;
+}
+
+#custom-powermenu:hover {
+    color: #ebdbb2;
+}
+

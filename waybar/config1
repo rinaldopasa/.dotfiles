@@ -1,0 +1,123 @@
+{
+  "height": 28,
+  "modules-left": [
+    "custom/launcher",
+    "sway/workspaces",
+    "temperature",
+    "idle_inhibitor",
+    "sway/window",
+    "sway/mode",
+  ],
+
+  "modules-center": ["clock"],
+
+  "modules-right": [
+    "pulseaudio",
+    "backlight",
+    "memory",
+    "cpu",
+    "network",
+    "custom/powermenu",
+    "tray"
+  ],
+
+  "custom/launcher": {
+    "format": " ",
+    "on-click": "",
+    "tooltip": false
+  },
+  "sway/workspace": {
+    "disable-scroll": true
+  },
+  "temperature": {
+    "format": " {temperatureC}°C",
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp2_input",
+    //"critical-threshold": 80,
+    "tooltip": false
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      //"activated": "",
+      //"deactivated": ""
+      "activated": "<span font_family='Font Awesome 6 Pro Solid' size='medium'></span>",
+      "deactivated": "<span font_family='Font Awesome 6 Pro Solid' size='medium'></span>"
+    },
+    "tooltip": false
+  },
+  "sway/window": {
+    "max-length": 50
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+
+  "clock": {
+    "on-click": "",
+    //"on-click-middle": "~/.config/waybar/wallpaper_random.sh &",
+    "interval": 1,
+    "format": "{:%I:%M %p  %A %b %d}",
+    "tooltip": true,
+    "tooltip-format": "{:%A, %d %B %Y}\n<tt>{calendar}</tt>"
+  },
+
+  "pulseaudio": {
+    "scroll-step": 2,
+    "format": "{icon} {volume}%",
+    "format-muted": "婢 Muted",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
+    "on-click": "pamixer --toggle-mute && ( [ \"$(pamixer --get-mute)\" = \"true\" ] && echo 0 > /tmp/wobpipe ) || pamixer --get-volume > /tmp/wobpipe",
+    "on-scroll-up": "pamixer -ui 2 && pamixer --get-volume > /tmp/wobpipe",
+    "on-scroll-down": "pamixer -ud 2 && pamixer --get-volume > /tmp/wobpipe",
+    "tooltip": false
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "on-scroll-up": "light -A 5 && light -G | cut -d'.' -f1 > /tmp/wobpipe",
+    "on-scroll-down": "light -U 5 && light -G | cut -d'.' -f1 > /tmp/wobpipe",
+    "format": "{icon} {percent}%",
+    "format-icons": ["","","",""]
+  },
+  "memory": {
+    "interval": 1,
+    "format": "﬙ {percentage}%",
+    "states": {
+      "warning": 90
+    }
+  },
+  "cpu": {
+    "interval": 1,
+    "format": " {usage}%",
+  },
+  "network": {
+    "interval": 1,
+    "format-wifi": "說{essid}",
+    "format-ethernet": " {ifname} ({ipaddr})",
+    "format-linked": "說{essid} (No IP)",
+    "format-disconnected": "說Disconnected",
+    "tooltip": false
+  },
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": "{icon} {capacity}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "format-full": "{icon} {capacity}%",
+    "format-chargin": " {capacity}%",
+    "tooltip": false
+  },
+  "custom/powermenu": {
+    "format": "<span font_family='Font Awesome 6 Pro Solid' size='medium'></span>",
+    "tooltip": false,
+    "on-click": "",
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 10,
+  },
+}

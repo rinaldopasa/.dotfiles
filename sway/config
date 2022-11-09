@@ -24,7 +24,8 @@ set $term alacritty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu bemenu-run | xargs swaymsg exec --
+#set $menu bemenu-run | xargs swaymsg exec --
+set $menu alacritty --class 'launcher' --command bash -c 'compgen -c | sort -u | fzf | xargs swaymsg exec --'
 
 # WOB (Wayland Overlay Bar)
 set $wobpipe /tmp/wobpipe
@@ -50,6 +51,8 @@ exec rm -f $sovpipe && mkfifo $sovpipe && tail -f $sovpipe | sov
 # Clipman -- Clipboard manager for Wayland
 exec wl-paste -t text --watch clipman store --no-persist --max-items=60 --histpath="~/.local/share/clipman.json"
 
+# Waybar
+exec_always --no-startup-id ~/.config/waybar/launch_waybar.sh &
 
 ### +---------------------+
 ### | Input configuration |
@@ -77,7 +80,7 @@ input type:keyboard {
 ### +----------------------+
 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/.dotfiles/sway/backgrounds/bg005 fill
+output * bg ~/.dotfiles/sway/backgrounds/late_hours_by_atlasredline_dfbgxzb.png fill
 #
 # Example configuration:
 #
@@ -119,6 +122,9 @@ exec swayidle -w \
     # Start clipman
     bindsym $mod+c exec $clipboard
 
+    # Waybar toggle
+    bindsym $mod+o exec killall -SIGUSR1 waybar
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -136,7 +142,7 @@ exec swayidle -w \
     # WOB -- Updating volume and brightness
     bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume > $wobpipe
     bindsym XF86AudioLowerVolume exec pamixer -ud 2 && pamixer --get-volume > $wobpipe
-    bindsym XF86AudioMute exec pamixer --toggle-mute && ( [ "$(pamixer --get-mute)" = "true" ] && echo 0 > $wobpipe ) || pamixer --get-volume > $WOBSOCK
+    bindsym XF86AudioMute exec pamixer --toggle-mute && ( [ "$(pamixer --get-mute)" = "true" ] && echo 0 > $wobpipe ) || pamixer --get-volume > $wobpipe
     bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > $wobpipe
     bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > $wobpipe
 
@@ -292,25 +298,25 @@ bindsym $mod+g mode $mode_gammastep
 
 for_window [app_id="galculator"] floating enable
 for_window [app_id="pavucontrol"] floating enable, resize set 580px 450px
-#for_window [app_id="^launcher$"] floating enable, border none, resize set width 25 ppt height 20 ppt, move position 0 px 0px
+for_window [app_id="^launcher$"] floating enable, border none, resize set width 25 ppt height 20 ppt, move position 0 px 0px
 #for_window [app_id="foot" title="^htop"] move container to workspace 2, workspace 2
 
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
+#bar {
+#    position top
+#
+#    # When the status_command prints a new line to stdout, swaybar updates.
+#    # The default just shows the current date and time.
+#    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+#
+#    colors {
+#        statusline #ffffff
+#        background #323232
+#        inactive_workspace #32323200 #32323200 #5c5c5c
+#    }
+#}
 
 include /etc/sway/config.d/*

@@ -38,7 +38,7 @@ set $mode_gammastep "Color temperature: (a)uto, (r)eset, (2)500K, (3)000K, (4)00
 set $kill_gammastep pkill -9 gammastep
 
 # Clipman (Clipboard Manager)
-set $clipboard clipman pick --tool bemenu -T'--prompt="Clipman" -i' --max-items=30 --histpath="~/.local/share/clipman.json"
+set $clipboard clipman pick --tool bemenu -T'-in -p " Clipman: " -l 15 --fn "BlexMono Nerd Font 12" --tb "#1a1b26" --tf "#b8bb26" --fb "#1a1b26" --ff "#b8bb26" --nb "#1a1b26e6" --ab "#1a1b26e6" --nf "#ebdbb2" --af "#ebdbb2" --hb "#ebdbb2" --hf "#1d2021"'
 
 ### +-----------+
 ### | Autostart |

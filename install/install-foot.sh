@@ -6,5 +6,5 @@
 
 mkdir -p "$HOME/.config/foot"
 
-ln -sf "$HOME/.dotfiles/foot/foot.ini $HOME/.config/foot/foot.ini"
+ln -sf "$HOME/.dotfiles/foot/foot.ini" "$HOME/.config/foot/foot.ini"
 

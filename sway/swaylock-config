@@ -1,0 +1,31 @@
+#!/bin/bash
+swaylock -f --fade-in 0.3 \
+--indicator \
+--indicator-radius 80 \
+--indicator-thickness 8 \
+--clock \
+--screenshots \
+--effect-blur 7x5 \
+--inside-color "#1a1b26" \
+--inside-clear-color "#1a1b26" \
+--inside-caps-lock-color "#1a1b26" \
+--inside-ver-color "#1a1b26" \
+--inside-wrong-color "#1a1b26" \
+--text-color "#fbf1c7" \
+--text-clear-color "#fbf1c7" \
+--text-caps-lock-color "#fbf1c7" \
+--text-ver-color "#fbf1c7" \
+--text-wrong-color "#fbf1c7" \
+--line-color "#1a1b26" \
+--line-clear-color "#1a1b26" \
+--line-caps-lock-color "#1a1b26" \
+--line-ver-color "#1a1b26" \
+--line-wrong-color "#1a1b26" \
+--ring-color "#c0caf5" \
+--ring-clear-color "#fabd2f" \
+--ring-caps-lock-color "#c0caf5" \
+--ring-ver-color "#7dcfff" \
+--ring-wrong-color "#fb4934" \
+--key-hl-color "#1a1b26" \
+--bs-hl-color "#1a1b26" \
+

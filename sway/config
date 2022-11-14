@@ -23,9 +23,9 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-#set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu tofi-drun | xargs swaymsg exec --
 #set $menu bemenu-run | xargs swaymsg exec --
-set $menu alacritty --class 'launcher' --command bash -c 'compgen -c | sort -u | fzf | xargs swaymsg exec --'
+#set $menu alacritty --class 'launcher' --command bash -c 'compgen -c | sort -u | fzf | xargs swaymsg exec --'
 
 # WOB (Wayland Overlay Bar)
 set $wobpipe /tmp/wobpipe
@@ -94,10 +94,10 @@ output * bg ~/.dotfiles/sway/backgrounds/winterdream_by_gunzfree_decq64l.jpg fil
 ### +--------------------+
 
 exec swayidle -w \
-	timeout 600 "$HOME/.config/sway/swaylock-config" \
-	timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+	timeout 600 'swaymsg exec "$HOME/.config/sway/swaylock-config"' \
+	timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 	before-sleep 'playerctl pause' \
-	before-sleep 'swaylock -f -C "$HOME/.config/sway/swaylock-config"'
+	before-sleep 'swaymsg exec "$HOME/.config/sway/swaylock-config"'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -112,6 +112,7 @@ exec swayidle -w \
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym $mod+Shift+Return exec foot
 
     # Kill focused window
     bindsym $mod+Shift+q kill

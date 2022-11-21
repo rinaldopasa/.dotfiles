@@ -23,9 +23,10 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu tofi-drun | xargs swaymsg exec --
+set $menu tofi-drun -c "$HOME/.config/tofi/config-drun" | xargs swaymsg exec --
 #set $menu bemenu-run | xargs swaymsg exec --
 #set $menu alacritty --class 'launcher' --command bash -c 'compgen -c | sort -u | fzf | xargs swaymsg exec --'
+#set $menu2 exec $term --class=launcher -e 
 
 # WOB (Wayland Overlay Bar)
 set $wobpipe /tmp/wobpipe
@@ -94,10 +95,10 @@ output * bg ~/.dotfiles/sway/backgrounds/winterdream_by_gunzfree_decq64l.jpg fil
 ### +--------------------+
 
 exec swayidle -w \
-	timeout 600 'swaymsg exec "$HOME/.config/sway/swaylock-config"' \
-	timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+	timeout 600 'swaylock -f -C "$HOME/.config/sway/swaylock-config"' \
+	timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 	before-sleep 'playerctl pause' \
-	before-sleep 'swaymsg exec "$HOME/.config/sway/swaylock-config"'
+	before-sleep 'swaylock -f -C "$HOME/.config/sway/swaylock-config"'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -122,6 +123,7 @@ exec swayidle -w \
 
     # Start clipman
     bindsym $mod+c exec $clipboard
+    bindsym $mod+p exec $clipboard2
 
     # Waybar toggle
     bindsym $mod+o exec killall -SIGUSR1 waybar
@@ -307,7 +309,11 @@ for_window [app_id="^launcher$"] floating enable, border none, resize set width 
 #
 # Read `man 5 sway-bar` for more information about this section.
 #bar {
+#    swaybar_command waybar
 #    position top
+#    hidden_state hide
+#    mode hide
+#    modifier Mod4
 #
 #    # When the status_command prints a new line to stdout, swaybar updates.
 #    # The default just shows the current date and time.

@@ -3,10 +3,10 @@
   "modules-left": [
     "custom/launcher",
     "sway/workspaces",
-    "temperature",
+    // "temperature",
     "idle_inhibitor",
-    "sway/window",
     "sway/mode",
+    "sway/window",
   ],
 
   "modules-center": ["clock"],
@@ -49,7 +49,7 @@
     "max-length": 50
   },
   "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>"
+    "format": "{}"
   },
 
   "clock": {
@@ -94,7 +94,7 @@
   "network": {
     "interval": 1,
     "format-wifi": "說{essid}",
-    "format-ethernet": " {ifname} ({ipaddr})",
+    "format-ethernet": " {ifname}",
     "format-linked": "說{essid} (No IP)",
     "format-disconnected": "說 Disconnected",
     "tooltip": false

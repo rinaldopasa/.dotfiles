@@ -1,0 +1,19 @@
+#
+# ~/.bash_profile
+#
+
+# Start under Wayland
+export XDG_SESSION_TYPE=wayland
+export GDK_BACKEND=wayland
+export BEMENU_BACKEND=wayland	
+
+# PATH
+PATH="${PATH}:$HOME/.local/bin"
+
+# Source ~/.bashrc
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# Autostart sway on TTY login
+if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+	exec sway
+fi

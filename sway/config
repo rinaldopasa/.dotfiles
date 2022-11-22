@@ -294,14 +294,34 @@ mode $mode_gammastep {
 }
 bindsym $mod+g mode $mode_gammastep
 
-# +---------------+
-# | Windows rules |
-# +---------------+
+# +--------------+
+# | Window rules |
+# +--------------+
+
+set {
+  $accent #c0caf5
+  $red #cc241d
+  $darkgray #1a1b26
+  $blue #458588
+}
+
+client.focused          $accent $accent $darkgray $blue $accent
+client.focused_inactive $darkgray $darkgray $accent $darkgray $darkgray
+client.unfocused        $darkgray $darkgray $accent $darkgray $darkgray
+client.urgent           $red $red $accent $red $red
+
+default_border pixel 2
+default_floating_border pixel 2
+smart_borders on
+gaps inner 6
 
 for_window [app_id="galculator"] floating enable
 for_window [app_id="pavucontrol"] floating enable, resize set 580px 450px
 for_window [app_id="^launcher$"] floating enable, border none, resize set width 25 ppt height 20 ppt, move position 0 px 0px
+for_window [app_id="org.gnome.Nautilus"] floating enable, border none
 #for_window [app_id="foot" title="^htop"] move container to workspace 2, workspace 2
+
+
 
 #
 # Status Bar:

@@ -21,9 +21,14 @@ esac
 # Scripts
 source $HOME/.dotfiles/bash/scripts.sh
 
+# lf
+LFCD="$HOME/.dotfiles/lf/lfcd.sh"
+[[ -f $LFCD ]] && source $LFCD
+
 # Setting fish as interective shell only
 if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
 then
 	exec fish
 fi
+
 

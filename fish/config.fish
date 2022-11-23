@@ -1,6 +1,9 @@
 # Disable greeting
 set -U fish_greeting
 
+# EDITOR
+set -gx EDITOR "vim"
+
 # zoxide - A smarter cd command
 zoxide init fish | source
 

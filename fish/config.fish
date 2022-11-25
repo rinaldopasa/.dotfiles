@@ -4,8 +4,11 @@ set -U fish_greeting
 # EDITOR
 set -gx EDITOR "vim"
 
-# zoxide - A smarter cd command
+# zoxide ? A smarter cd command
 zoxide init fish | source
+
+# starship ? Cross-Shell Prompt
+starship init fish | source
 
 if status is-interactive
     # Autostart sway

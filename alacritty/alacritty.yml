@@ -1,5 +1,6 @@
 # Import files (Colors, Fonts)
 import:
+  #- ~/.config/alacritty/colors.yml
   - ~/.config/alacritty/colors.yml
   - ~/.config/alacritty/fonts.yml
   - ~/.config/alacritty/keybindings.yml

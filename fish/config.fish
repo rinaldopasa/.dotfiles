@@ -1,5 +1,6 @@
 # Disable greeting
 set -U fish_greeting
+set fish_color_command magenta
 
 # EDITOR
 set -gx EDITOR "vim"

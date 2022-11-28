@@ -7,9 +7,9 @@ command_timeout = 1000
 # Change the default prompt format
 #format = """$env_var $all"""
 
-format = """\
-[┌──](240)$env_var \
-$all[└](240)$character"""
+format = """
+[┌──](240)$env_var $all\
+[└](240)$jobs$battery$time$status$container$shell$character"""
 
 # Change the default prompt characters
 [character]

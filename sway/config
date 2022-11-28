@@ -27,6 +27,7 @@ set $menu tofi-drun -c "$HOME/.config/tofi/config-drun" | xargs swaymsg exec --
 #set $menu bemenu-run | xargs swaymsg exec --
 #set $menu alacritty --class 'launcher' --command bash -c 'compgen -c | sort -u | fzf | xargs swaymsg exec --'
 #set $menu2 exec $term --class=launcher -e 
+set $menu2 exec $term --class=launcher -e "$HOME/.local/bin/sway-launcher-desktop"
 
 # WOB (Wayland Overlay Bar)
 set $wobpipe /tmp/wobpipe
@@ -119,10 +120,9 @@ exec swayidle -w \
 
     # Start your launcher
     bindsym $mod+d exec $menu
-
+    bindsym $mod+p exec $menu2
     # Start clipman
     bindsym $mod+c exec $clipboard
-    bindsym $mod+p exec $clipboard2
 
     # Waybar toggle
     bindsym $mod+o exec killall -SIGUSR1 waybar
@@ -317,10 +317,10 @@ gaps inner 6
 
 for_window [app_id="galculator"] floating enable
 for_window [app_id="pavucontrol"] floating enable, resize set 580px 450px
-for_window [app_id="^launcher$"] floating enable, border none, resize set width 25 ppt height 20 ppt, move position 0 px 0px
+#for_window [app_id="^launcher$"] floating enable, border none, resize set width 25 ppt height 20 ppt, move position 0 px 0px
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 7
 for_window [app_id="org.gnome.Nautilus"] floating enable, border none
 #for_window [app_id="foot" title="^htop"] move container to workspace 2, workspace 2
-
 
 
 #

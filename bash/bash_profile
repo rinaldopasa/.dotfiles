@@ -10,16 +10,24 @@ if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
     export MOZ_ENABLE_WAYLAND=1
 fi
 
-# Default configuration starship
+# Starship
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+# Volta
+export VOLTA_HOME="$HOME/.volta"
+# Cargo
+export CARGO_HOME="$HOME/.cargo"
 
 # PATH
-PATH="${PATH}:$HOME/.local/bin"
+PATH="$HOME/.local/bin:$PATH"
+PATH="$VOLTA_HOME/bin:$PATH"
+PATH="$CARGO_HOME/bin:$PATH"
 
 # Source ~/.bashrc
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-# Autostart sway on TTY login
+# Autostart sway on TTY login 
+# N: lines following a command using `exec` would be ignored.
 if [[ -z $DISPLAY ]] && [[ "$(tty)" == "/dev/tty1" ]]; then
     exec sway
 fi
+

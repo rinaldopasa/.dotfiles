@@ -1,7 +1,9 @@
 # Import files (Colors, Fonts)
 import:
-  #- ~/.config/alacritty/colors.yml
-  - ~/.config/alacritty/colors.yml
+  #- ~/.config/alacritty/colorschemes/gruvbox_dark.yml
+  - ~/.config/alacritty/colorschemes/tokyonight_storm.yml
+  #- ~/.config/alacritty/colorschemes/tokyonight_night.yml
+  #- ~/.config/alacritty/colorschemes/tokyonight_moon.yml
   - ~/.config/alacritty/fonts.yml
   - ~/.config/alacritty/keybindings.yml
 
@@ -36,6 +38,8 @@ cursor:
   style:
     shape: Block
     blinking: On
+
+  blinking_interval: 750
 
   unfocused_hollow: false
 

@@ -5,9 +5,28 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Use bash-completion, if available, with <TAB> <TAB>
+[[ -r /usr/share/bash-completion/bash_completion ]] && \
+  . /usr/share/bash-completion/bash_completion
+
+# Check the window size after each command and, if necessary, update the values of LINES and COLUMNS
+shopt -s checkwinsize
+
+# Enable history appending instead of overwriting, so if you start a new terminal, you have old session history
+shopt -s histappend
+PROMPT_COMMAND='history -a'
+
+# Expand the history size
+export HISTFILESIZE=10000
+export HISTSIZE=500
+
+# Don't put duplicate lines in the history and don't add lines that start with a space
+export HISTCONTROL=erasedups:ignoreboth
+
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
+# Enable terminal title updates
 case ${TERM} in
   xterm*|rxvt*|Eterm|alacritty*|aterm|kterm|gnome*)
     PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
@@ -19,7 +38,8 @@ case ${TERM} in
 esac
 
 # Scripts
-source $HOME/.dotfiles/bash/scripts.sh
+[[ -r $HOME/.dotfiles/bash/scripts.sh ]] && \
+  . $HOME/.dotfiles/bash/scripts.sh
 
 # lf
 LFCD="$HOME/.dotfiles/lf/lfcd.sh"

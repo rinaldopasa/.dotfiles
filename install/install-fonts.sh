@@ -11,6 +11,7 @@ nerdfonts=(
 "FantasqueSansMono"
 "FiraCode"
 "IBMPlexMono"
+"JetBrainsMono"
 )
 
 mkdir -p $USERFONTDIR

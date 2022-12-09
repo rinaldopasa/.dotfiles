@@ -1,0 +1,51 @@
+# Gruvbox-Material-Dark Alacritty Colors
+colors:
+  primary:
+    # hard contrast background = '#1d2021'
+    # medium contrast background = '#282828'
+    # soft contrast background = '#32302f'
+    background:         '#282828'
+    foreground:         '#d4be98'
+  cursor:
+    text:   CellBackground
+    cursor: '#e78a4e'
+  vi_mode_cursor:
+    text:   CellBackground
+    cursor: '#e78a4e'
+  # search:
+  #   matches:
+  #     foreground:
+  #     background:
+  #   focused_match:
+  #     foreground: CellBackground
+  #     background: CellForeground
+  #   bar:
+  #     background: ''
+  #     foreground: ''
+  # line_indicator:
+  #   foreground: None
+  #   background: None
+  selection:
+    text:       CellBackground
+    background: CellForeground
+  normal:
+  # hard contrast black = #32302f
+  # medium contrast black = #3c3836
+  # soft contrast black = #45403d
+    black:   '#3c3836'
+    red:     '#ea6962'
+    green:   '#a9b665'
+    yellow:  '#d8a657'
+    blue:    '#7daea3'
+    magenta: '#d3869b'
+    cyan:    '#89b482'
+    white:   '#d4be98'
+  bright:
+    black:   '#928374'
+    red:     '#ea6962'
+    green:   '#a9b665'
+    yellow:  '#d8a657'
+    blue:    '#7daea3'
+    magenta: '#d3869b'
+    cyan:    '#89b482'
+    white:   '#ddc7a1'

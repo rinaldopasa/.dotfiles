@@ -1,18 +1,24 @@
 # Font configuration
 font:
   normal:
-    family: "BlexMono Nerd Font"
+    #family: "BlexMono Nerd Font"
+    family: "JetBrainsMono Nerd Font"
     style: Medium
+
   bold:
-    family: "BlexMono Nerd Font"
+    #family: "BlexMono Nerd Font"
+    family: "JetBrainsMono Nerd Font"
     style: Bold
+
   italic:
-    family: "BlexMono Nerd Font"
+    #family: "BlexMono Nerd Font"
+    family: "JetBrainsMono Nerd Font"
     style: Italic
+
   bold_italic:
-    family: "BlexMono Nerd Font"
+    #family: "BlexMono Nerd Font"
+    family: "JetBrainsMono Nerd Font"
     style: Bold Italic
 
-  # Point size
-  size: 12
+  size: 13
 

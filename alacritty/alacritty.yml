@@ -1,7 +1,8 @@
 # Import files (Colors, Fonts)
 import:
   #- ~/.config/alacritty/colorschemes/gruvbox_dark.yml
-  - ~/.config/alacritty/colorschemes/tokyonight_storm.yml
+  - ~/.config/alacritty/colorschemes/gruvbox_material_dark.yml
+  #- ~/.config/alacritty/colorschemes/tokyonight_storm.yml
   #- ~/.config/alacritty/colorschemes/tokyonight_night.yml
   #- ~/.config/alacritty/colorschemes/tokyonight_moon.yml
   - ~/.config/alacritty/fonts.yml

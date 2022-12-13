@@ -1,0 +1,94 @@
+icons_format = " {icon} "
+[theme]
+file = 'custom_gruvbox_dark.toml'
+[icons]
+name = "none"
+[icons.overrides]
+#pomodoro = "<span font_family='Noto Color Emoji'>🍅</span>"
+pomodoro = "<span color='#ea6962'>\ue330</span>"
+pomodoro_started = "<span color='#fe8019'>\uf04c</span>"
+pomodoro_paused = "<span color='#b8bb26'>\uf04b</span>"
+pomodoro_stopped = "\ue41b"
+#pomodoro_break = "<span font_family='Noto Color Emoji'>☕</span>"
+pomodoro_break = "<span color='#7daea3'>\uf7b6</span>"
+volume_muted = "\uf2e2"
+volume_empty = "\uf027"
+volume_half = "\uf6a8"
+volume_full = "\uf028"
+backlight_empty = "<span color='#fabd2f'>\ue0ca</span>"
+backlight_1 = "<span color='#fabd2f'>\ue0ca</span>"
+backlight_2 = "<span color='#fabd2f'>\ue0ca</span>"
+backlight_3 = "<span color='#fabd2f'>\ue0ca</span>"
+backlight_4 = "<span color='#fabd2f'>\ue0ca</span>"
+backlight_5 = "<span color='#fabd2f'>\ue0ca</span>"
+backlight_6 = "<span color='#fabd2f'>\ue0ca</span>"
+backlight_7 = "<span color='#fabd2f'>\ue0ca</span>"
+backlight_8 = "<span color='#fabd2f'>\ue0c9</span>"
+backlight_9 = "<span color='#fabd2f'>\ue0c9</span>"
+backlight_10 = "<span color='#fabd2f'>\ue0c9</span>"
+backlight_11 = "<span color='#fabd2f'>\ue0c9</span>"
+backlight_12 = "<span color='#fabd2f'>\ue0c9</span>"
+backlight_13 = "<span color='#fabd2f'>\ue0c9</span>"
+backlight_full = "<span color='#fabd2f'>\ue0c9</span>"
+cpu = "<span font_family='Noto Color Emoji'>🧠</span>"
+disk_drive = "\uf0a0"
+bat_charging = "\uf376"
+bat_not_available = "\ue0b0"
+bat_empty = "\uf244"
+bat_quarter = "\uf243"
+bat_half = "\uf242"
+bat_three_quarters = "\uf241"
+bat_full = "\uf240"
+time = "\uf073"
+
+[[block]]
+block = "focused_window"
+show_marks = "visible"
+max_width = 50
+
+[[block]]
+block = "pomodoro"
+length = 25
+break_length = 5
+message = "Take a break!"
+break_message = "Back to work!"
+notifier = "notifysend"
+
+[[block]]
+block = "sound"
+step_width = 2
+headphones_indicator = true
+show_volume_when_muted = true
+on_click = "pavucontrol"
+
+[[block]]
+block = "backlight"
+minimum = 5
+maximum = 100
+cycle = [100, 50, 5, 50]
+
+[[block]]
+block = "hueshift"
+hue_shifter = "redshift"
+step = 50
+max_temp = 7000
+min_temp = 2000
+click_temp = 3500
+
+[[block]]
+block = "cpu"
+
+[[block]]
+block = "disk_space"
+format = "{icon}{available}"
+
+[[block]]
+block = "battery"
+format = "{percentage}"
+missing_format = ""
+icons_format = " {icon}"
+
+[[block]]
+block = "time"
+format = "%a %Y-%m-%d %H:%M:%S"
+interval = 1

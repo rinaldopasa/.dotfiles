@@ -1,6 +1,7 @@
 #
 # ~/.bash_profile
 #
+export EDITOR="vim"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"	# Starship | https://starship.rs
 export VOLTA_HOME="$HOME/.volta"				# Volta | https://volta.sh
 export CARGO_HOME="$HOME/.cargo"				# Cargo | https://rust-lang.github.io/rustup

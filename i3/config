@@ -24,7 +24,9 @@ exec_always --no-startup-id autotiling
 
 # <<<--- Launch Applications & Scripts --->>>
 #bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+t exec --no-startup-id xfce4-terminal
 bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+n exec --no-startup-id wezterm
 bindsym $mod+d exec --no-startup-id dmenu_run
 
 # <<<--- Control Volume & Media Players --->>>
@@ -174,18 +176,24 @@ mode "$mode_redshift" {
 bindsym $mod+F5 mode "$mode_redshift"
 
 # <<<--- Colors of Windows --->>>
-set $background #1d2021
-set $accent #ebdbb2
-set $red #cc241d
-set $darkgray #3c3836
+# CS: Gruvbox Material Dark
+set $bg       #282828
+set $fg       #ebdbb2
+set $red      #cc241d
+set $orange   #e78a4e
+set $green    #a9b665
+set $blue     #7daea3
+set $purple   #d3869b
+set $aqua     #89b482
+set $darkgray #504945
 
-# class			border	backgr.	text	indicator child_border
-client.focused		$accent $accent $darkgray $accent $accent
-client.focused_inactive	$darkgray $darkgray $accent $darkgray $darkgray
-client.unfocused	$darkgray $darkgray $accent $darkgray $darkgray
-client.urgent		$red $red $accent $red $red
-client.placeholder	$red $red $accent $red $red
-
+#       Gruvbox Theme   brdr        bg          text    indictr     chld_brdr
+client.focused          $orange     $orange     $bg     $orange     $orange
+client.focused_inactive $darkgray   $darkgray   $fg     $darkgray   $darkgray
+client.unfocused        $darkgray   $darkgray   $fg     $darkgray   $darkgray
+client.urgent           $red        $red        $fg     $red        $red
+client.placeholder      $darkgray   $darkgray   $fg    	$darkgray   $darkgray
+client.background       $darkgray
 # <<<--- Bar --->>>
 bar {
 	font pango:Inconsolata SemiBold, Font Awesome 6 Sharp Solid 12
@@ -194,15 +202,15 @@ bar {
 	position top
 	#separator_symbol "┃"
 	colors {
-		separator $darkgray
-		statusline $accent
-		background $background
-		
-		#			border	backgr.	text
-		focused_workspace	$accent $accent $background
-		active_workspace	$darkgray $darkgray $accent
-		inactive_workspace	$darkgray $darkgray $accent
-		urgent_workspace	$red $red $accent
-		binding_mode		$darkgray $red $accent
+		separator $aqua
+		statusline $fg
+		background $bg
+		# workspaces section
+		#                    border     backgr.     text
+		focused_workspace    $orange    $orange     $bg
+		inactive_workspace   $darkgray  $darkgray   $fg
+		active_workspace     $darkgray  $blue       $darkgray
+		urgent_workspace     $red       $red        $fg
+		binding_mode	     $red 	$red	    $fg
 	}
 }

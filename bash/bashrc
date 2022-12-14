@@ -38,8 +38,7 @@ case ${TERM} in
 esac
 
 # Scripts
-[[ -r $HOME/.dotfiles/bash/scripts.sh ]] && \
-  . $HOME/.dotfiles/bash/scripts.sh
+[[ -r $HOME/.dotfiles/bash/scripts.sh ]] && source $HOME/.dotfiles/bash/scripts.sh
 
 # lf
 #LFCD="$HOME/.dotfiles/lf/lfcd.sh"
@@ -51,3 +50,4 @@ esac
 #	exec fish
 #fi
 
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
